@@ -1,0 +1,123 @@
+extends CharacterBody2D
+
+const SPEED = 130.0
+const JUMP_VELOCITY = -270.0
+const DASH_SPEED = 300.0
+const DASH_TIME = 0.2
+const DASH_COOLDOWN = 0.5
+const MAX_JUMPS = 2
+
+var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+var sprite_dir = +1
+
+var is_dashing = false
+var can_dash = true
+var dash_reloaded = true
+var dash_timer = 0.0
+var dash_direction = 0
+var jump_count = 0
+
+@onready var animated_sprite = $AnimatedSprite2D
+
+@export var slash_scene: PackedScene
+@export var slash_down_scene: PackedScene
+
+func _physics_process(delta):
+	# Handle dash timer
+	if is_dashing:
+		dash_timer -= delta
+		if dash_timer <= 0:
+			stop_dash()
+		else:
+			velocity.x = dash_direction * DASH_SPEED
+			move_and_slide()
+			return
+
+	# Gravity
+	if not is_on_floor():
+		velocity.y += gravity * delta
+
+	# Reset jump count when grounded
+	if is_on_floor():
+		jump_count = 0
+		dash_reloaded = true
+
+	# Jump
+	if Input.is_action_just_pressed("jump") and jump_count < MAX_JUMPS:
+		velocity.y = JUMP_VELOCITY
+		jump_count += 1
+
+	# Dash
+	if Input.is_action_just_pressed("dash") and can_dash and dash_reloaded:
+		start_dash()
+		return
+
+	# Movement input
+	var direction = Input.get_axis("move_left", "move_right")
+
+	# Flip sprite
+	if direction > 0:
+		sprite_dir = +1
+		animated_sprite.flip_h = false
+	elif direction < 0:
+		sprite_dir = -1
+		animated_sprite.flip_h = true
+
+	# Animations
+	if is_on_floor():
+		if direction == 0:
+			animated_sprite.play("idle")
+		else:
+			animated_sprite.play("run")
+	else:
+		animated_sprite.play("jump")
+
+	# Apply horizontal movement
+	if direction:
+		velocity.x = direction * SPEED
+	else:
+		velocity.x = move_toward(velocity.x, 0, SPEED)
+
+	# Attacks
+	if Input.is_action_just_pressed("attack"):
+		var is_down = Input.is_action_pressed("move_down")
+		perform_attack(is_down)
+
+	move_and_slide()
+
+
+func start_dash():
+	is_dashing = true
+	can_dash = false
+	velocity.y = 0
+	dash_timer = DASH_TIME
+	dash_direction = sprite_dir
+	animated_sprite.play("dash")
+
+
+func stop_dash():
+	is_dashing = false
+	animated_sprite.play("idle")
+	await get_tree().create_timer(DASH_COOLDOWN).timeout
+	can_dash = true
+
+
+func perform_attack(is_down := false):
+	var slash_instance: Node2D
+
+	if is_down:
+		slash_instance = slash_down_scene.instantiate()
+		# pass reference to self
+		slash_instance.player = self
+	else:
+		slash_instance = slash_scene.instantiate()
+
+	add_child(slash_instance)
+
+	# Positioning offsets
+	var offset = Vector2(0, 30) if is_down else Vector2(30, 0)
+	if animated_sprite.flip_h and not is_down:
+		offset.x *= -1
+		slash_instance.scale.x = -1
+
+	slash_instance.position = offset
