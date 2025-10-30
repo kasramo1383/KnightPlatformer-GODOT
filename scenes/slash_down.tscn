@@ -1,6 +1,6 @@
 [gd_scene load_steps=24 format=3 uid="uid://brwui1xe4xnav"]
 
-[ext_resource type="Script" uid="uid://o5esvp8qwr8e" path="res://scenes/slash_down.gd" id="1_4fs4f"]
+[ext_resource type="Script" uid="uid://o5esvp8qwr8e" path="res://scripts/slash_down.gd" id="1_4fs4f"]
 [ext_resource type="Texture2D" uid="uid://bvv0moc6abp4x" path="res://assets/sprites/sword_slash.png" id="1_aijbl"]
 [ext_resource type="Texture2D" uid="uid://dnqoo133xvcia" path="res://assets/sprites/sword_slash_down.png" id="2_g6502"]
 

@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=3 uid="uid://drghr3j3inos3"]
 
-[ext_resource type="Script" uid="uid://bp3d78i437h63" path="res://scenes/spikes.gd" id="1_bflj7"]
+[ext_resource type="Script" uid="uid://bp3d78i437h63" path="res://scripts/spikes.gd" id="1_bflj7"]
 [ext_resource type="Texture2D" uid="uid://cqfr6fejevqp5" path="res://assets/sprites/moving_metal_spike.png" id="2_bflj7"]
 [ext_resource type="PackedScene" uid="uid://dtrbka1ef726o" path="res://scenes/killzone.tscn" id="2_xbcdo"]
 
