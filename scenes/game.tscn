@@ -306,7 +306,94 @@ autoplay = "move"
 position = Vector2(529, 81)
 
 [node name="Slime2" parent="." instance=ExtResource("6_l0s6b")]
-position = Vector2(92, 81)
+position = Vector2(89, 81)
+
+[node name="Slime2" parent="Slime2" instance=ExtResource("6_l0s6b")]
+position = Vector2(90, 80)
+
+[node name="Slime5" parent="." instance=ExtResource("6_l0s6b")]
+position = Vector2(327, 49)
+
+[node name="Slime2" parent="Slime5" instance=ExtResource("6_l0s6b")]
+position = Vector2(90, 80)
+
+[node name="Slime6" parent="." instance=ExtResource("6_l0s6b")]
+position = Vector2(340, 49)
+
+[node name="Slime2" parent="Slime6" instance=ExtResource("6_l0s6b")]
+position = Vector2(90, 80)
+
+[node name="Slime7" parent="." instance=ExtResource("6_l0s6b")]
+position = Vector2(354, 49)
+
+[node name="Slime2" parent="Slime7" instance=ExtResource("6_l0s6b")]
+position = Vector2(90, 80)
+
+[node name="Slime8" parent="." instance=ExtResource("6_l0s6b")]
+position = Vector2(365, 48)
+
+[node name="Slime2" parent="Slime8" instance=ExtResource("6_l0s6b")]
+position = Vector2(90, 80)
+
+[node name="Slime9" parent="." instance=ExtResource("6_l0s6b")]
+position = Vector2(379, 48)
+
+[node name="Slime2" parent="Slime9" instance=ExtResource("6_l0s6b")]
+position = Vector2(90, 80)
+
+[node name="Slime10" parent="." instance=ExtResource("6_l0s6b")]
+position = Vector2(379, 48)
+
+[node name="Slime2" parent="Slime10" instance=ExtResource("6_l0s6b")]
+position = Vector2(90, 80)
+
+[node name="Slime11" parent="." instance=ExtResource("6_l0s6b")]
+position = Vector2(394, 48)
+
+[node name="Slime2" parent="Slime11" instance=ExtResource("6_l0s6b")]
+position = Vector2(90, 80)
+
+[node name="Slime12" parent="." instance=ExtResource("6_l0s6b")]
+position = Vector2(410, 47)
+
+[node name="Slime2" parent="Slime12" instance=ExtResource("6_l0s6b")]
+position = Vector2(90, 80)
+
+[node name="Slime13" parent="." instance=ExtResource("6_l0s6b")]
+position = Vector2(426, 47)
+
+[node name="Slime2" parent="Slime13" instance=ExtResource("6_l0s6b")]
+position = Vector2(90, 80)
+
+[node name="Slime14" parent="." instance=ExtResource("6_l0s6b")]
+position = Vector2(444, 48)
+
+[node name="Slime2" parent="Slime14" instance=ExtResource("6_l0s6b")]
+position = Vector2(90, 80)
+
+[node name="Slime15" parent="." instance=ExtResource("6_l0s6b")]
+position = Vector2(461, 47)
+
+[node name="Slime2" parent="Slime15" instance=ExtResource("6_l0s6b")]
+position = Vector2(90, 80)
+
+[node name="Slime16" parent="." instance=ExtResource("6_l0s6b")]
+position = Vector2(479, 47)
+
+[node name="Slime2" parent="Slime16" instance=ExtResource("6_l0s6b")]
+position = Vector2(90, 80)
+
+[node name="Slime17" parent="." instance=ExtResource("6_l0s6b")]
+position = Vector2(496, 47)
+
+[node name="Slime2" parent="Slime17" instance=ExtResource("6_l0s6b")]
+position = Vector2(90, 80)
+
+[node name="Slime18" parent="." instance=ExtResource("6_l0s6b")]
+position = Vector2(496, 47)
+
+[node name="Slime2" parent="Slime18" instance=ExtResource("6_l0s6b")]
+position = Vector2(90, 80)
 
 [node name="Slime3" parent="." instance=ExtResource("6_l0s6b")]
 position = Vector2(182, 0)
