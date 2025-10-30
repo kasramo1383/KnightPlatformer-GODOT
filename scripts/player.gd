@@ -18,6 +18,8 @@ var dash_direction = 0
 var jump_count = 0
 
 @onready var animated_sprite = $AnimatedSprite2D
+@onready var timer = $Timer
+@onready var collision_shape = $CollisionShape2D
 
 @export var slash_scene: PackedScene
 @export var slash_down_scene: PackedScene
@@ -82,6 +84,30 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("attack"):
 		var is_down = Input.is_action_pressed("move_down")
 		perform_attack(is_down)
+		
+	for i in get_slide_collision_count():
+		var collision = get_slide_collision(i)
+		
+		# Check if we hit a TileMap
+		if collision.get_collider() is TileMap:
+			var tilemap = collision.get_collider() as TileMap
+		  
+		  # Convert collision point to tile coordinates
+			var tile_coords = tilemap.local_to_map(collision.get_position())
+		  
+		  # Get the TileData for that tile (layer 0 by default)
+			var tile_data = tilemap.get_cell_tile_data(1, tile_coords)
+			if tile_data:
+			# Read custom metadata
+				var tile_type = tile_data.get_custom_data("collide")
+				var damage = tile_data.get_custom_data("killer")
+			
+				if damage:
+					print("You died!")
+					Engine.time_scale = 0.5
+					if is_instance_valid(collision_shape):
+						collision_shape.queue_free()
+					timer.start()
 
 	move_and_slide()
 
@@ -121,3 +147,8 @@ func perform_attack(is_down := false):
 		slash_instance.scale.x = -1
 
 	slash_instance.position = offset
+
+
+func _on_timer_timeout() -> void:
+	Engine.time_scale = 1.0
+	get_tree().reload_current_scene()

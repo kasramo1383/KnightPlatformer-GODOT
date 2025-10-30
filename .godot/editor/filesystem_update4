@@ -1,3 +1,3 @@
-res://scenes/slime_red.tscn
 res://scenes/game.tscn
-res://scenes/slime_purple.tscn
+res://scripts/player.gd
+res://scenes/player.tscn
