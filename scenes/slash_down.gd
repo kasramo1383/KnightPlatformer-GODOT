@@ -43,36 +43,15 @@ func check_tile_collisions():
 				var collide = tile_data.get_custom_data("collide")
 				print(collide)
 				if collide:
-					if not has_bounced and player:
-						player.velocity.y = player.JUMP_VELOCITY / 1.5  # smaller bounce
-						has_bounced = true
-						print("bounce made")
-						return
+					bounce_player()
 
-#func _physics_process(delta: float) -> void:
-	#for i in get_slide_collision_count():
-		#var collision = get_slide_collision(i)
-		#
-		## Check if we hit a TileMap
-		#if collision.get_collider() is TileMap:
-			#var tilemap = collision.get_collider() as TileMap
-		  #
-		  ## Convert collision point to tile coordinates
-			#var tile_coords = tilemap.local_to_map(collision.get_position())
-		  #
-		  ## Get the TileData for that tile (layer 0 by default)
-			#var tile_data = tilemap.get_cell_tile_data(1, tile_coords)
-			#if tile_data:
-			## Read custom metadata
-				#var is_collidable = tile_data.get_custom_data("collide")
-			#
-				#if is_collidable:
-					#if not has_bounced and player:
-						#player.velocity.y = player.JUMP_VELOCITY / 1.5  # smaller bounce
-						#has_bounced = true
-						#print("bounce made")
-					#
-
+func bounce_player():
+	if not has_bounced and player:
+		player.velocity.y = player.JUMP_VELOCITY / 1.5  # smaller bounce
+		has_bounced = true
+		print("bounce made")
+		return
+		
 func _on_hitbox_area_entered(area):
 	print("0")
 	if area.get_parent().is_in_group("enemy"):
@@ -81,10 +60,7 @@ func _on_hitbox_area_entered(area):
 		print("2")
 		
 		# Simple jump effect on the player
-		if not has_bounced and player:
-			player.velocity.y = player.JUMP_VELOCITY / 1.5  # smaller bounce
-			has_bounced = true
-			print("bounce made")
+		bounce_player()
 
 func _on_animation_finished():
 	queue_free()

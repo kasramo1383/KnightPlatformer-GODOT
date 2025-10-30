@@ -132,6 +132,8 @@ func perform_attack(is_down := false):
 	var slash_instance: Node2D
 
 	if is_down:
+		if is_on_floor():
+			return
 		slash_instance = slash_down_scene.instantiate()
 		# pass reference to self
 		slash_instance.player = self
