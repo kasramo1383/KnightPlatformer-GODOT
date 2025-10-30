@@ -6,6 +6,7 @@ const DASH_SPEED = 300.0
 const DASH_TIME = 0.2
 const DASH_COOLDOWN = 0.5
 const MAX_JUMPS = 2
+const ATTACK_COOLDOWN = 0.4 # <-- new constant for attack cooldown
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var sprite_dir = +1
@@ -16,6 +17,8 @@ var dash_reloaded = true
 var dash_timer = 0.0
 var dash_direction = 0
 var jump_count = 0
+
+var can_attack = true # <-- new flag for attack cooldown
 
 @onready var animated_sprite = $AnimatedSprite2D
 @onready var timer = $Timer
@@ -80,28 +83,21 @@ func _physics_process(delta):
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 
-	# Attacks
-	if Input.is_action_just_pressed("attack"):
+	# Attacks with cooldown
+	if Input.is_action_just_pressed("attack") and can_attack:
 		var is_down = Input.is_action_pressed("move_down")
 		perform_attack(is_down)
-		
+		start_attack_cooldown() # <-- triggers cooldown
+
 	for i in get_slide_collision_count():
 		var collision = get_slide_collision(i)
-		
-		# Check if we hit a TileMap
 		if collision.get_collider() is TileMap:
 			var tilemap = collision.get_collider() as TileMap
-		  
-		  # Convert collision point to tile coordinates
 			var tile_coords = tilemap.local_to_map(collision.get_position())
-		  
-		  # Get the TileData for that tile (layer 0 by default)
 			var tile_data = tilemap.get_cell_tile_data(1, tile_coords)
 			if tile_data:
-			# Read custom metadata
 				var tile_type = tile_data.get_custom_data("collide")
 				var damage = tile_data.get_custom_data("killer")
-			
 				if damage:
 					print("You died!")
 					Engine.time_scale = 0.5
@@ -128,26 +124,30 @@ func stop_dash():
 	can_dash = true
 
 
+# --- NEW FUNCTION ---
+func start_attack_cooldown():
+	can_attack = false
+	await get_tree().create_timer(ATTACK_COOLDOWN).timeout
+	can_attack = true
+# --------------------
+
+
 func perform_attack(is_down := false):
 	var slash_instance: Node2D
-
 	if is_down:
 		if is_on_floor():
 			return
 		slash_instance = slash_down_scene.instantiate()
-		# pass reference to self
 		slash_instance.player = self
 	else:
 		slash_instance = slash_scene.instantiate()
 
 	add_child(slash_instance)
 
-	# Positioning offsets
 	var offset = Vector2(0, 30) if is_down else Vector2(30, 0)
 	if animated_sprite.flip_h and not is_down:
 		offset.x *= -1
 		slash_instance.scale.x = -1
-
 	slash_instance.position = offset
 
 

@@ -75,19 +75,21 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3c2nd"]
-size = Vector2(21, 37)
+size = Vector2(17.5, 23)
 
 [node name="Slash" type="Node2D"]
 script = ExtResource("1_3c2nd")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(-23.999998, 0)
+position = Vector2(-13.999999, 0)
 scale = Vector2(0.2764977, 0.51261216)
 sprite_frames = SubResource("SpriteFrames_fg1j7")
 animation = &"slash"
+frame = 8
+frame_progress = 1.0
 
 [node name="Hitbox" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-position = Vector2(-7, -7)
+position = Vector2(-14.75, -1.5)
 shape = SubResource("RectangleShape2D_3c2nd")
