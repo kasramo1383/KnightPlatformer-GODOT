@@ -1,14 +1,16 @@
 extends Node2D
 
 const SPEED = 60
-const RANGE = 100  # distance to oscillate from start point
+const RANGE = 100
+const AMPLITUDE = 10.0
+const FREQUENCY = 2.0
+const MAX_HEALTH = 5
+
 var direction = 1
 var is_dead = false
 var start_position: Vector2
-
 var time := 0.0
-const AMPLITUDE := 10.0
-const FREQUENCY := 2.0
+var health := MAX_HEALTH
 
 @onready var animated_sprite = $AnimatedSprite2D
 @onready var hurtbox = $Hurtbox
@@ -28,7 +30,6 @@ func _process(delta):
 	time += delta
 	position.y = start_position.y + sin(time * FREQUENCY) * AMPLITUDE
 
-	# Flip direction if reaching limits
 	if position.x > start_position.x + RANGE:
 		direction = -1
 		animated_sprite.flip_h = true
@@ -43,6 +44,12 @@ func _on_hurtbox_area_entered(area):
 func take_damage():
 	if is_dead:
 		return
+
+	health -= 1
+	if health <= 0:
+		die()
+
+func die():
 	is_dead = true
 	animated_sprite.play("dead")
 	await get_tree().create_timer(0.4).timeout
