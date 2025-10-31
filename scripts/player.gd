@@ -4,7 +4,7 @@ const SPEED = 130.0
 const JUMP_VELOCITY = -270.0
 const DASH_SPEED = 300.0
 const DASH_TIME = 0.2
-const DASH_COOLDOWN = 0.5
+const DASH_COOLDOWN = 0.4
 const MAX_JUMPS = 2
 const ATTACK_COOLDOWN = 0.4 # <-- new constant for attack cooldown
 
@@ -13,7 +13,7 @@ var sprite_dir = +1
 
 var double_jump = false
 var is_dashing = false
-var can_dash = true
+var can_dash = false
 var dash_reloaded = true
 var dash_timer = 0.0
 var dash_direction = 0
@@ -72,7 +72,6 @@ func _physics_process(delta):
 				jump_count = 2
 			velocity.y = JUMP_VELOCITY
 			jump_count += 1
-
 	# Dash
 	if Input.is_action_just_pressed("dash") and can_dash and dash_reloaded:
 		start_dash()
@@ -127,6 +126,7 @@ func _physics_process(delta):
 
 
 func start_dash():
+	dash_reloaded = false
 	is_dashing = true
 	can_dash = false
 	velocity.y = 0
@@ -180,3 +180,6 @@ func _on_timer_timeout() -> void:
 
 func gain_double_jump() -> void:
 	double_jump = true
+	
+func gain_dash() -> void:
+	can_dash = true

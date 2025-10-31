@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://rrj6ceq1txnj"]
+[gd_scene load_steps=22 format=3 uid="uid://rrj6ceq1txnj"]
 
 [ext_resource type="PackedScene" uid="uid://dqnaqj8yb6hwd" path="res://scenes/player.tscn" id="1_rbmkf"]
 [ext_resource type="Texture2D" uid="uid://d0q2g65ahgok" path="res://assets/sprites/world_tileset.png" id="2_r1crl"]
@@ -12,6 +12,8 @@
 [ext_resource type="Script" path="res://name_entry.gd" id="10_hpbg5"]
 [ext_resource type="PackedScene" uid="uid://drttodj0dr8ww" path="res://scenes/fly_yellow.tscn" id="11_1qb7c"]
 [ext_resource type="PackedScene" uid="uid://d35nwcui66s3" path="res://scenes/fly_pink.tscn" id="12_xmjrc"]
+[ext_resource type="PackedScene" uid="uid://e4unu3673yg7" path="res://scenes/doublejump.tscn" id="13_q1dv6"]
+[ext_resource type="PackedScene" path="res://scenes/dash.tscn" id="14_nfqf5"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ashvg"]
 texture = ExtResource("2_r1crl")
@@ -493,7 +495,13 @@ text = "Submit"
 position = Vector2(1186, -45)
 
 [node name="FlyYellow2" parent="." instance=ExtResource("11_1qb7c")]
-position = Vector2(222, -11)
+position = Vector2(151, -45)
 
 [node name="FlyPink" parent="." instance=ExtResource("12_xmjrc")]
-position = Vector2(-157, -16)
+position = Vector2(213, -50)
+
+[node name="doublejump" parent="." instance=ExtResource("13_q1dv6")]
+position = Vector2(-53, 67)
+
+[node name="dash" parent="." instance=ExtResource("14_nfqf5")]
+position = Vector2(-119, 69)

@@ -54,6 +54,7 @@ func bounce_player():
 	if not has_bounced and player:
 		player.velocity.y = player.JUMP_VELOCITY
 		has_bounced = true
+		player.dash_reloaded = true
 		return
 		
 func _on_hitbox_area_entered(area):
