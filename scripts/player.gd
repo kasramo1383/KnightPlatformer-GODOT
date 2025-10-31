@@ -11,6 +11,7 @@ const ATTACK_COOLDOWN = 0.4 # <-- new constant for attack cooldown
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var sprite_dir = +1
 
+
 var is_dashing = false
 var can_dash = true
 var dash_reloaded = true
@@ -20,13 +21,25 @@ var jump_count = 0
 
 var can_attack = true # <-- new flag for attack cooldown
 
+var last_checkpoint: Vector2
+
 @onready var animated_sprite = $AnimatedSprite2D
 @onready var timer = $Timer
 @onready var collision_shape = $CollisionShape2D
-
+var dead = false
 @export var slash_scene: PackedScene
 @export var slash_down_scene: PackedScene
-
+func set_checkpoint():
+	last_checkpoint = position
+	
+func die():
+	print("You died!")
+	animated_sprite.play("death")
+	dead =true
+	
+	set_physics_process(true)
+	timer.start()
+	
 func _physics_process(delta):
 	# Handle dash timer
 	if is_dashing:
@@ -41,6 +54,9 @@ func _physics_process(delta):
 	# Gravity
 	if not is_on_floor():
 		velocity.y += gravity * delta
+	if dead:
+		move_and_slide()
+		return
 
 	# Reset jump count when grounded
 	if is_on_floor():
@@ -49,6 +65,8 @@ func _physics_process(delta):
 
 	# Jump
 	if Input.is_action_just_pressed("jump") and jump_count < MAX_JUMPS:
+		if not is_on_floor():
+			jump_count = 2
 		velocity.y = JUMP_VELOCITY
 		jump_count += 1
 
@@ -69,13 +87,14 @@ func _physics_process(delta):
 		animated_sprite.flip_h = true
 
 	# Animations
-	if is_on_floor():
-		if direction == 0:
-			animated_sprite.play("idle")
+	if not dead:
+		if is_on_floor():
+			if direction == 0:
+				animated_sprite.play("idle")
+			else:
+				animated_sprite.play("run")
 		else:
-			animated_sprite.play("run")
-	else:
-		animated_sprite.play("jump")
+			animated_sprite.play("jump")
 
 	# Apply horizontal movement
 	if direction:
@@ -98,12 +117,8 @@ func _physics_process(delta):
 			if tile_data:
 				var tile_type = tile_data.get_custom_data("collide")
 				var damage = tile_data.get_custom_data("killer")
-				if damage:
-					print("You died!")
-					Engine.time_scale = 0.5
-					if is_instance_valid(collision_shape):
-						collision_shape.queue_free()
-					timer.start()
+				if damage and not dead:
+					die()
 
 	move_and_slide()
 
@@ -141,7 +156,7 @@ func perform_attack(is_down := false):
 		slash_instance.player = self
 	else:
 		slash_instance = slash_scene.instantiate()
-
+		
 	add_child(slash_instance)
 
 	var offset = Vector2(0, 30) if is_down else Vector2(30, 0)
@@ -153,4 +168,9 @@ func perform_attack(is_down := false):
 
 func _on_timer_timeout() -> void:
 	Engine.time_scale = 1.0
-	get_tree().reload_current_scene()
+	
+	position = Vector2(-520, 80)
+	velocity.x = 0
+	velocity.y = 0
+	set_physics_process(true)
+	dead = false
