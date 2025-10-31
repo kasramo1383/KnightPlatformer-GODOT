@@ -4,6 +4,8 @@ extends Node2D
 
 @onready var anim = $AnimatedSprite2D
 @onready var hitbox = $Hitbox
+@onready var sfx_slash = $AnimatedSprite2D/AudioStreamPlayer2D
+@onready var sfx_hit = $Hitbox/AudioStreamPlayer2D
 @onready var tilemap: TileMap = get_parent().get_parent().get_node("TileMap")
 @onready var collision_shape = get_node("Hitbox/CollisionShape2D")
 
@@ -11,6 +13,7 @@ var has_bounced = false  # ensures only one bounce per slash
 
 func _ready():
 	anim.play("slash_down")
+	sfx_slash.play()
 	anim.connect("animation_finished", Callable(self, "_on_animation_finished"))
 	hitbox.connect("area_entered", Callable(self, "_on_hitbox_area_entered"))
 	check_tile_collisions()
@@ -47,18 +50,15 @@ func check_tile_collisions():
 
 func bounce_player():
 	if not has_bounced and player:
-		player.velocity.y = player.JUMP_VELOCITY / 1.5  # smaller bounce
+		player.velocity.y = player.JUMP_VELOCITY
 		has_bounced = true
 		print("bounce made")
 		return
 		
 func _on_hitbox_area_entered(area):
-	print("0")
 	if area.get_parent().is_in_group("enemy"):
-		print("1")
 		area.get_parent().take_damage()
-		print("2")
-		
+		sfx_hit.play()
 		# Simple jump effect on the player
 		bounce_player()
 
