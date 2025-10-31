@@ -1,55 +1,54 @@
-[gd_scene load_steps=18 format=3 uid="uid://d35nwcui66s3"]
+[gd_scene load_steps=17 format=3 uid="uid://d35nwcui66s3"]
 
 [ext_resource type="Script" uid="uid://c8est6mgaj8dy" path="res://scripts/fly_pink.gd" id="1_rh52p"]
-[ext_resource type="Texture2D" path="res://assets/sprites/fly_2.png" id="2_ryxv8"]
 [ext_resource type="Texture2D" uid="uid://btlf7y6dgycyv" path="res://assets/sprites/fly.png" id="3_laew6"]
 [ext_resource type="PackedScene" uid="uid://dtrbka1ef726o" path="res://scenes/killzone.tscn" id="4_7njwq"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_aa67b"]
-atlas = ExtResource("2_ryxv8")
-region = Rect2(297, 18, 33, 18)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_x6cs5"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_hxkgo"]
 atlas = ExtResource("3_laew6")
-region = Rect2(0, 18, 33, 18)
+region = Rect2(297, 0, 33, 18)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_o3byc"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_rh52p"]
 atlas = ExtResource("3_laew6")
-region = Rect2(33, 18, 33, 18)
+region = Rect2(0, 0, 33, 18)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_bodni"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ryxv8"]
 atlas = ExtResource("3_laew6")
-region = Rect2(66, 18, 33, 18)
+region = Rect2(33, 0, 33, 18)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_xo13n"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_laew6"]
 atlas = ExtResource("3_laew6")
-region = Rect2(99, 18, 33, 18)
+region = Rect2(66, 0, 33, 18)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_yio4g"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_7njwq"]
 atlas = ExtResource("3_laew6")
-region = Rect2(132, 18, 33, 18)
+region = Rect2(99, 0, 33, 18)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_kmfkv"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_jhm0u"]
 atlas = ExtResource("3_laew6")
-region = Rect2(165, 18, 33, 18)
+region = Rect2(132, 0, 33, 18)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_tpq5w"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_bdcln"]
 atlas = ExtResource("3_laew6")
-region = Rect2(198, 18, 33, 18)
+region = Rect2(165, 0, 33, 18)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_lv5pb"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_2q3ef"]
 atlas = ExtResource("3_laew6")
-region = Rect2(231, 18, 33, 18)
+region = Rect2(198, 0, 33, 18)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_nf82x"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_gsh2i"]
 atlas = ExtResource("3_laew6")
-region = Rect2(264, 18, 33, 18)
+region = Rect2(231, 0, 33, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yu5lo"]
+atlas = ExtResource("3_laew6")
+region = Rect2(264, 0, 33, 18)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_a8uf2"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_aa67b")
+"texture": SubResource("AtlasTexture_hxkgo")
 }],
 "loop": false,
 "name": &"dead",
@@ -57,31 +56,31 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_x6cs5")
+"texture": SubResource("AtlasTexture_rh52p")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_o3byc")
+"texture": SubResource("AtlasTexture_ryxv8")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_bodni")
+"texture": SubResource("AtlasTexture_laew6")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_xo13n")
+"texture": SubResource("AtlasTexture_7njwq")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_yio4g")
+"texture": SubResource("AtlasTexture_jhm0u")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_kmfkv")
+"texture": SubResource("AtlasTexture_bdcln")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_tpq5w")
+"texture": SubResource("AtlasTexture_2q3ef")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_lv5pb")
+"texture": SubResource("AtlasTexture_gsh2i")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_nf82x")
+"texture": SubResource("AtlasTexture_yu5lo")
 }],
 "loop": true,
 "name": &"default",

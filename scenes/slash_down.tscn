@@ -1,8 +1,10 @@
-[gd_scene load_steps=24 format=3 uid="uid://brwui1xe4xnav"]
+[gd_scene load_steps=26 format=3 uid="uid://brwui1xe4xnav"]
 
 [ext_resource type="Script" uid="uid://o5esvp8qwr8e" path="res://scripts/slash_down.gd" id="1_4fs4f"]
 [ext_resource type="Texture2D" uid="uid://bvv0moc6abp4x" path="res://assets/sprites/sword_slash.png" id="1_aijbl"]
 [ext_resource type="Texture2D" uid="uid://dnqoo133xvcia" path="res://assets/sprites/sword_slash_down.png" id="2_g6502"]
+[ext_resource type="AudioStream" uid="uid://bw4ol1erjkoce" path="res://assets/sounds/sword_slash.mp3" id="4_l7ndn"]
+[ext_resource type="AudioStream" uid="uid://dwq6kiw45hlcb" path="res://assets/sounds/sword_hit.mp3" id="5_h033x"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_e2dr4"]
 atlas = ExtResource("1_aijbl")
@@ -144,21 +146,27 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4fs4f"]
-size = Vector2(38, 18.5)
+size = Vector2(38, 26.25)
 
 [node name="SlashDown" type="Node2D"]
 script = ExtResource("1_4fs4f")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -20)
-scale = Vector2(0.8133105, 0.30120853)
+position = Vector2(0, -16.819336)
+scale = Vector2(0.8133105, 0.40060428)
 sprite_frames = SubResource("SpriteFrames_g6502")
 animation = &"slash_down"
 frame = 8
 frame_progress = 1.0
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="AnimatedSprite2D"]
+stream = ExtResource("4_l7ndn")
+
 [node name="Hitbox" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-position = Vector2(0, -20)
+position = Vector2(0, -16.125)
 shape = SubResource("RectangleShape2D_4fs4f")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Hitbox"]
+stream = ExtResource("5_h033x")

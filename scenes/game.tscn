@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://cuv4vme4rwno0"]
+[gd_scene load_steps=22 format=3 uid="uid://cuv4vme4rwno0"]
 
 [ext_resource type="Script" uid="uid://pjlgkvyorluq" path="res://scripts/game_manager.gd" id="1_l4ihi"]
 [ext_resource type="PackedScene" uid="uid://dqnaqj8yb6hwd" path="res://scenes/player.tscn" id="1_rbmkf"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://drghr3j3inos3" path="res://scenes/spikes.tscn" id="10_vtaks"]
 [ext_resource type="PackedScene" uid="uid://3cfbyinpibml" path="res://scenes/slime_purple.tscn" id="11_kvpfn"]
 [ext_resource type="PackedScene" uid="uid://drttodj0dr8ww" path="res://scenes/fly_yellow.tscn" id="13_kvuet"]
+[ext_resource type="PackedScene" uid="uid://d35nwcui66s3" path="res://scenes/fly_pink.tscn" id="14_trtic"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ashvg"]
 texture = ExtResource("2_r1crl")
@@ -371,3 +372,6 @@ position = Vector2(169, -3)
 
 [node name="FlyYellow" parent="." instance=ExtResource("13_kvuet")]
 position = Vector2(241, -60)
+
+[node name="FlyPink" parent="." instance=ExtResource("14_trtic")]
+position = Vector2(311, -88)
