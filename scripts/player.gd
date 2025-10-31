@@ -13,7 +13,7 @@ var sprite_dir = +1
 
 var double_jump = false
 var is_dashing = false
-var can_dash = true
+var can_dash = false
 var dash_reloaded = true
 var dash_timer = 0.0
 var dash_direction = 0
@@ -180,3 +180,6 @@ func _on_timer_timeout() -> void:
 
 func gain_double_jump() -> void:
 	double_jump = true
+	
+func gain_dash() -> void:
+	can_dash = true
