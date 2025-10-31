@@ -411,10 +411,10 @@ position = Vector2(3256, -96)
 position = Vector2(3328, -96)
 
 [node name="SlimePurple2" parent="." instance=ExtResource("8_nfqf5")]
-position = Vector2(1997, -100)
+position = Vector2(1999, -96)
 
 [node name="SlimePurple3" parent="." instance=ExtResource("8_nfqf5")]
-position = Vector2(2047, -100)
+position = Vector2(2043, -96)
 
 [node name="Labels" type="Node" parent="."]
 
@@ -500,6 +500,18 @@ theme_override_fonts/font = ExtResource("7_8cblx")
 theme_override_font_sizes/font_size = 8
 text = "New ability!
 Use Lshift/C to dash"
+
+[node name="Label15" type="Label" parent="Labels"]
+offset_left = 959.0
+offset_top = -11.0
+offset_right = 1083.0
+offset_bottom = 19.0
+theme_override_colors/font_color = Color(0.0117647, 0.14902, 0.34902, 1)
+theme_override_fonts/font = ExtResource("7_8cblx")
+theme_override_font_sizes/font_size = 8
+text = "Don't Kill the birds!
+They may help you
+get somewhere"
 
 [node name="Label11" type="Label" parent="Labels"]
 offset_left = 3321.0
@@ -676,7 +688,7 @@ position = Vector2(3190, -38)
 position = Vector2(3641, -122)
 
 [node name="dash" parent="." instance=ExtResource("14_nfqf5")]
-position = Vector2(2026, -108)
+position = Vector2(2023, -104)
 
 [node name="checkpoints" type="Node" parent="."]
 
