@@ -11,7 +11,7 @@ const ATTACK_COOLDOWN = 0.4 # <-- new constant for attack cooldown
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var sprite_dir = +1
 
-
+var double_jump = false
 var is_dashing = false
 var can_dash = true
 var dash_reloaded = true
@@ -65,10 +65,13 @@ func _physics_process(delta):
 
 	# Jump
 	if Input.is_action_just_pressed("jump") and jump_count < MAX_JUMPS:
-		if not is_on_floor():
-			jump_count = 2
-		velocity.y = JUMP_VELOCITY
-		jump_count += 1
+		if double_jump == false and jump_count == 1 or double_jump == false and not is_on_floor():
+			pass
+		else:
+			if not is_on_floor():
+				jump_count = 2
+			velocity.y = JUMP_VELOCITY
+			jump_count += 1
 
 	# Dash
 	if Input.is_action_just_pressed("dash") and can_dash and dash_reloaded:
@@ -174,3 +177,6 @@ func _on_timer_timeout() -> void:
 	velocity.y = 0
 	set_physics_process(true)
 	dead = false
+
+func gain_double_jump() -> void:
+	double_jump = true
