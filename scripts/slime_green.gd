@@ -8,10 +8,12 @@ var is_dead = false
 @onready var ray_cast_left = $RayCastLeft
 @onready var animated_sprite = $AnimatedSprite2D
 @onready var hurtbox = $Hurtbox
+@onready var movement_sfx = $AnimatedSprite2D/AudioStreamPlayer2D
 
 func _ready():
 	hurtbox.connect("area_entered", Callable(self, "_on_hurtbox_area_entered"))
 	add_to_group("enemy")
+	movement_sfx.play() # start ambient movement sound
 
 func _process(delta):
 	if is_dead:
@@ -34,6 +36,7 @@ func take_damage():
 	if is_dead:
 		return
 	is_dead = true
+	movement_sfx.stop() # stop sound on death
 	animated_sprite.play("dead")
 	await get_tree().create_timer(0.4).timeout
 	queue_free()

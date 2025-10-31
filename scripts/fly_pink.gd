@@ -12,11 +12,13 @@ const FREQUENCY := 2.0
 
 @onready var animated_sprite = $AnimatedSprite2D
 @onready var hurtbox = $Hurtbox
+@onready var movement_sfx = $AnimatedSprite2D/AudioStreamPlayer2D
 
 func _ready():
 	hurtbox.connect("area_entered", Callable(self, "_on_hurtbox_area_entered"))
 	add_to_group("enemy")
 	start_position = position
+	movement_sfx.play()
 
 func _process(delta):
 	if is_dead:

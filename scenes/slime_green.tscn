@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://d2w2i5h0lhc6l"]
+[gd_scene load_steps=13 format=3 uid="uid://d2w2i5h0lhc6l"]
 
 [ext_resource type="Script" uid="uid://cemowaubtxlr0" path="res://scripts/slime_green.gd" id="1_fxbww"]
 [ext_resource type="Texture2D" uid="uid://bl53gpvg5mh1y" path="res://assets/sprites/slime_green.png" id="1_nuk1g"]
 [ext_resource type="PackedScene" uid="uid://dtrbka1ef726o" path="res://scenes/killzone.tscn" id="2_aiwyj"]
+[ext_resource type="AudioStream" uid="uid://ey4hk26o7evj" path="res://assets/sounds/slime_walk.mp3" id="3_aelh5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_n6pvg"]
 atlas = ExtResource("1_nuk1g")
@@ -65,6 +66,13 @@ script = ExtResource("1_fxbww")
 position = Vector2(0, -12)
 sprite_frames = SubResource("SpriteFrames_a8uf2")
 autoplay = "default"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="AnimatedSprite2D"]
+stream = ExtResource("3_aelh5")
+pitch_scale = 2.5
+autoplay = true
+max_distance = 400.0
+attenuation = 4.0
 
 [node name="Killzone" parent="." instance=ExtResource("2_aiwyj")]
 

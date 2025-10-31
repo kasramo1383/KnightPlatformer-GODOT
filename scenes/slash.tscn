@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://cc5mgdoao24d8" path="res://scripts/slash.gd" id="1_3c2nd"]
 [ext_resource type="Texture2D" uid="uid://bvv0moc6abp4x" path="res://assets/sprites/sword_slash.png" id="2_fg1j7"]
 [ext_resource type="AudioStream" uid="uid://bw4ol1erjkoce" path="res://assets/sounds/sword_slash.mp3" id="3_fg1j7"]
-[ext_resource type="AudioStream" uid="uid://b7chkil3787as" path="res://assets/sounds/sword-hit_YRGUHiza.mp3" id="4_e2dr4"]
+[ext_resource type="AudioStream" uid="uid://b7chkil3787as" path="res://assets/sounds/sword_hit_enemy.mp3" id="4_e2dr4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_e2dr4"]
 atlas = ExtResource("2_fg1j7")
@@ -90,7 +90,7 @@ animation = &"slash"
 frame = 8
 frame_progress = 1.0
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="AnimatedSprite2D"]
+[node name="SwordSlashSound" type="AudioStreamPlayer2D" parent="AnimatedSprite2D"]
 stream = ExtResource("3_fg1j7")
 
 [node name="Hitbox" type="Area2D" parent="."]
@@ -99,5 +99,5 @@ stream = ExtResource("3_fg1j7")
 position = Vector2(-14.75, -1.5)
 shape = SubResource("RectangleShape2D_3c2nd")
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Hitbox"]
+[node name="SwordHitEnemySound" type="AudioStreamPlayer2D" parent="Hitbox"]
 stream = ExtResource("4_e2dr4")

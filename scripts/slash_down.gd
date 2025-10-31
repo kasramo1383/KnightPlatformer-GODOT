@@ -4,8 +4,9 @@ extends Node2D
 
 @onready var anim = $AnimatedSprite2D
 @onready var hitbox = $Hitbox
-@onready var sfx_slash = $AnimatedSprite2D/AudioStreamPlayer2D
-@onready var sfx_hit = $Hitbox/AudioStreamPlayer2D
+@onready var sfx_slash = $AnimatedSprite2D/SwordSlashSound
+@onready var sfx_hit_enemy = $Hitbox/SwordHitEnemySound
+@onready var sfx_hit_spike = $Hitbox/SwordHitSpikeSound
 @onready var tilemap: TileMap = get_parent().get_parent().get_node("TileMap")
 @onready var collision_shape = get_node("Hitbox/CollisionShape2D")
 
@@ -46,19 +47,19 @@ func check_tile_collisions():
 				var collide = tile_data.get_custom_data("collide")
 				print(collide)
 				if collide:
+					sfx_hit_spike.play()
 					bounce_player()
 
 func bounce_player():
 	if not has_bounced and player:
 		player.velocity.y = player.JUMP_VELOCITY
 		has_bounced = true
-		print("bounce made")
 		return
 		
 func _on_hitbox_area_entered(area):
 	if area.get_parent().is_in_group("enemy"):
 		area.get_parent().take_damage()
-		sfx_hit.play()
+		sfx_hit_enemy.play()
 		# Simple jump effect on the player
 		bounce_player()
 

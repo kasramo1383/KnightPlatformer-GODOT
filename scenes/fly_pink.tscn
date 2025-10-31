@@ -1,7 +1,8 @@
-[gd_scene load_steps=17 format=3 uid="uid://d35nwcui66s3"]
+[gd_scene load_steps=18 format=3 uid="uid://d35nwcui66s3"]
 
 [ext_resource type="Script" uid="uid://c8est6mgaj8dy" path="res://scripts/fly_pink.gd" id="1_rh52p"]
 [ext_resource type="Texture2D" uid="uid://btlf7y6dgycyv" path="res://assets/sprites/fly.png" id="3_laew6"]
+[ext_resource type="AudioStream" uid="uid://dccw435p8f66i" path="res://assets/sounds/wing_flap.mp3" id="3_rh52p"]
 [ext_resource type="PackedScene" uid="uid://dtrbka1ef726o" path="res://scenes/killzone.tscn" id="4_7njwq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hxkgo"]
@@ -101,6 +102,12 @@ position = Vector2(0, -12)
 sprite_frames = SubResource("SpriteFrames_a8uf2")
 animation = &"dead"
 autoplay = "default"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="AnimatedSprite2D"]
+stream = ExtResource("3_rh52p")
+autoplay = true
+max_distance = 400.0
+attenuation = 4.0
 
 [node name="Killzone" parent="." instance=ExtResource("4_7njwq")]
 

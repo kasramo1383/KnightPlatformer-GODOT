@@ -2,8 +2,8 @@ extends Node2D
 
 @onready var anim = $AnimatedSprite2D
 @onready var hitbox = $Hitbox
-@onready var sfx_slash = $AnimatedSprite2D/AudioStreamPlayer2D
-@onready var sfx_hit = $Hitbox/AudioStreamPlayer2D
+@onready var sfx_slash = $AnimatedSprite2D/SwordSlashSound
+@onready var sfx_hit = $Hitbox/SwordHitEnemySound
 
 
 func _ready():
