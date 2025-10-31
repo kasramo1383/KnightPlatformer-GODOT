@@ -176,7 +176,7 @@ texture = ExtResource("2_r1crl")
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wfl0k"]
 texture = ExtResource("2_wfl0k")
 0:0/0 = 0
-0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -1.2590103, 8, -1.4388695, 8, 8, -8, 8)
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-6.115197, -1.0791512, 6.4749146, -1.6187286, 6.2950554, 8, -6.115197, 8)
 0:0/0/custom_data_0 = true
 0:0/0/custom_data_1 = true
 
@@ -265,6 +265,9 @@ position = Vector2(232, 69)
 
 [node name="Coin4" parent="Coins" instance=ExtResource("4_28cek")]
 position = Vector2(93, -25)
+
+[node name="Coin12" parent="Coins" instance=ExtResource("4_28cek")]
+position = Vector2(-678, -154)
 
 [node name="Coin11" parent="Coins" instance=ExtResource("4_28cek")]
 position = Vector2(345, -196)
