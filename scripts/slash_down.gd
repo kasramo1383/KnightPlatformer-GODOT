@@ -40,7 +40,7 @@ func check_tile_collisions():
 
 	# Loop through all tiles overlapped by the rectangle
 	for x in range(start.x, end.x + 1):
-		for y in range(start.y, end.y + 1):
+		for y in range(start.y, end.y + 2):
 			var coords = Vector2i(x, y)
 			var tile_data = tilemap.get_cell_tile_data(1, coords)
 			if tile_data:
