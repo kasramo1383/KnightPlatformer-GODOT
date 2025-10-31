@@ -65,6 +65,8 @@ func _physics_process(delta):
 
 	# Jump
 	if Input.is_action_just_pressed("jump") and jump_count < MAX_JUMPS:
+		if not is_on_floor():
+			jump_count = 2
 		velocity.y = JUMP_VELOCITY
 		jump_count += 1
 
