@@ -1,7 +1,7 @@
 extends Node
 
 var score = 0
-var group_id: int = 0
+var group_id: String
 @onready var score_label = $ScoreLabel
 @onready var win_label = $WinLabel
 var coin_count;
@@ -16,15 +16,15 @@ func _ready():
 func add_point():
 	score += 1
 	score_label.text = "Coins: " + str(score) +"/" + str(coin_count)
-	if score == coin_count:
+	if score >= coin_count:
 		win()
 		
 func win():
-	win_label.text = "You won! Hash for team %d: %s" % [group_id, generate_hash(group_id, "SECRET")]
+	win_label.text = "You won! Hash for team %s: %s" % [group_id, generate_hash(group_id, "SECRET")]
 	win_label.show()
 	
-func generate_hash(solver_group_id: int, private_key: String) -> String:
-	var combined := str(solver_group_id) + ":" + private_key
+func generate_hash(solver_group_id: String, private_key: String) -> String:
+	var combined := solver_group_id + ":" + private_key
 	var raw := combined.sha256_buffer()
 	var b64 := Marshalls.raw_to_base64(raw)
 	b64 = b64.replace("+", "-").replace("/", "_").replace("=", "")

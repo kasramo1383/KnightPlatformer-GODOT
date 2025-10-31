@@ -11,9 +11,7 @@ func _ready():
 func _on_start_pressed():
 	var text_value = name_input.text.strip_edges()
 
-	if text_value.is_valid_int():
-		var group_id = int(text_value)
-		if group_id > 0:
-			game_manager.group_id = group_id
-			player.set_physics_process(true)
-			hide()
+	var group_id = text_value
+	game_manager.group_id = group_id
+	player.set_physics_process(true)
+	hide()

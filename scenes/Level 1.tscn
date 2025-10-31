@@ -607,7 +607,7 @@ grow_vertical = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("7_8cblx")
 theme_override_font_sizes/font_size = 20
-text = "Enter group number"
+text = "Enter group hash"
 
 [node name="LineEdit" type="LineEdit" parent="NameEntry"]
 anchors_preset = 8
