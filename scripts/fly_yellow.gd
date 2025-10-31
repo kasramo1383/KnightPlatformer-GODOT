@@ -4,7 +4,7 @@ const SPEED = 0
 const RANGE = 100
 const AMPLITUDE = 10.0
 const FREQUENCY = 2.0
-const MAX_HEALTH = 50
+const MAX_HEALTH = 15
 
 var direction = 1
 var is_dead = false
