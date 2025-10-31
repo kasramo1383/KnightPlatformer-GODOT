@@ -21,7 +21,7 @@ var jump_count = 0
 
 var can_attack = true # <-- new flag for attack cooldown
 
-var last_checkpoint: Vector2
+var last_checkpoint: Vector2 = Vector2(-520, 80)
 
 @onready var animated_sprite = $AnimatedSprite2D
 @onready var timer = $Timer
@@ -172,7 +172,7 @@ func perform_attack(is_down := false):
 func _on_timer_timeout() -> void:
 	Engine.time_scale = 1.0
 	
-	position = Vector2(-520, 80)
+	position = last_checkpoint
 	velocity.x = 0
 	velocity.y = 0
 	set_physics_process(true)
